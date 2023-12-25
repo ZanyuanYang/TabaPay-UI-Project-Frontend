@@ -11,9 +11,10 @@ import {
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import Divider from '@mui/material/Divider';
-import { ChangeEvent, useState } from 'react';
-import { createMenuUsingPost } from '@/services/MenuController';
+import { ChangeEvent, useContext, useState } from 'react';
 import { createPostUsingPost } from '@/services/PostController';
+import { AuthContext } from '@/contexts/auth_context';
+import { MenuContext } from '@/contexts/menu_context';
 
 interface PostCreateDialogProps {
   category: string;
@@ -21,6 +22,8 @@ interface PostCreateDialogProps {
 
 function PostCreateDialog(props: PostCreateDialogProps) {
   const { category } = props;
+  const { setSuccessDescription } = useContext(AuthContext);
+  const { getPostsByCategory } = useContext(MenuContext);
   const [open, setOpen] = useState<boolean>(false);
   const [body, setBody] = useState<API.CreatePostBody>({
     title: '',
@@ -41,7 +44,6 @@ function PostCreateDialog(props: PostCreateDialogProps) {
       [e.target.name]: e.target.value,
     };
     setBody({ ...body, lists: updatedItems });
-    console.log(body);
   };
 
   const addItem = () => {
@@ -52,7 +54,6 @@ function PostCreateDialog(props: PostCreateDialogProps) {
         {
           name: '',
           description: '',
-          referralLink: '',
           websiteLink: '',
           imageUrl: '',
         },
@@ -63,7 +64,7 @@ function PostCreateDialog(props: PostCreateDialogProps) {
   const onSubmit = async (e: any) => {
     e.preventDefault();
     const res = await createPostUsingPost(body);
-    if (res.status === 200) {
+    if (res.status === 201) {
       setBody({
         title: '',
         imageUrl: '',
@@ -71,7 +72,9 @@ function PostCreateDialog(props: PostCreateDialogProps) {
         category: category,
         lists: [],
       });
+      getPostsByCategory(category);
       setOpen(false);
+      setSuccessDescription('Create Post Successfully');
     }
   };
 
@@ -172,22 +175,6 @@ function PostCreateDialog(props: PostCreateDialogProps) {
                   required
                 />
                 <Label
-                  htmlFor={`referralLink-${index}`}
-                  className="col-span-1 text-right"
-                >
-                  Referral Link
-                </Label>
-                <Input
-                  id={`referralLink-${index}`}
-                  name="referralLink"
-                  placeholder="Referral Link"
-                  value={item.referralLink}
-                  type="url"
-                  onChange={(e) => onItemChange(index, e)}
-                  className="col-span-5"
-                  required
-                />
-                <Label
                   htmlFor={`websiteLink-${index}`}
                   className="col-span-1 text-right"
                 >
@@ -201,7 +188,6 @@ function PostCreateDialog(props: PostCreateDialogProps) {
                   type="url"
                   onChange={(e) => onItemChange(index, e)}
                   className="col-span-5"
-                  required
                 />
                 <Label
                   htmlFor={`imageUrl-${index}`}

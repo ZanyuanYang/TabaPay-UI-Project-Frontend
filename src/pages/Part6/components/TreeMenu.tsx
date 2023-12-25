@@ -2,10 +2,8 @@ import { useContext, useState } from 'react';
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
 import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
 import { MenuContext } from '@/contexts/menu_context';
-import { Button } from '@/components/ui/button';
 import MenuCreateDialog from '@/pages/Part6/components/MenuCreateDialog';
 import CategoryCreateDialog from '@/pages/Part6/components/CategoryCreateDialog';
-import { Link } from 'react-router-dom';
 
 interface TreeNodeProps {
   node: any;
@@ -56,7 +54,6 @@ function TreeNode(props: TreeNodeProps) {
                 onClick={() => {
                   onClickTab(category);
                   setOnOpenNode(category);
-                  getPostsByCategory(category);
                 }}
               >
                 {category}

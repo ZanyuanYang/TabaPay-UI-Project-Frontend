@@ -3,6 +3,7 @@ import avatar from '../../assets/avatar.png';
 import classNames from '../../utils/classNames';
 import { useState } from 'react';
 import logo from '../../assets/logo.svg';
+import { Link } from 'react-router-dom';
 
 interface NavigationProps {
   name: string;
@@ -10,13 +11,20 @@ interface NavigationProps {
   current: boolean;
 }
 const navigationInit: NavigationProps[] = [
-  { name: 'Dashboard', href: '#', current: true },
-  { name: 'About', href: '#', current: false },
-  { name: 'Projects', href: '#', current: false },
-  { name: 'Blogs', href: '#', current: false },
+  { name: 'Part1', href: '/part1', current: true },
+  { name: 'Part2', href: '/part2', current: false },
+  { name: 'Part3', href: '/part3', current: false },
+  { name: 'Part4', href: '/part4', current: false },
+  { name: 'Part5', href: '/part5', current: false },
+  { name: 'Part6', href: '/part6', current: false },
 ];
 
 function Header() {
+  // get current path
+  const path = window.location.pathname;
+  const pathSplit = path.split('/');
+  const pathName = pathSplit[pathSplit.length - 1];
+  console.log(pathName);
   const [open, setOpen] = useState<boolean>(false);
   const [navigation, setNavigation] =
     useState<NavigationProps[]>(navigationInit);
@@ -52,11 +60,11 @@ function Header() {
               <div className="hidden sm:ml-6 sm:block">
                 <div className="flex space-x-4">
                   {navigation.map((item) => (
-                    <a
+                    <Link
                       key={item.name}
-                      href={item.href}
+                      to={item.href}
                       className={classNames(
-                        item.current
+                        item.name.toLowerCase() === pathName
                           ? 'bg-muted-foreground text-white'
                           : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                         'rounded-md px-3 py-2 text-sm font-medium'
@@ -64,7 +72,7 @@ function Header() {
                       onClick={() => onClickNavigation(item.name)}
                     >
                       {item.name}
-                    </a>
+                    </Link>
                   ))}
                 </div>
               </div>
@@ -91,11 +99,11 @@ function Header() {
           {open && (
             <div className="space-y-1 px-2 pb-3 pt-2">
               {navigation.map((item) => (
-                <a
+                <Link
                   key={item.name}
-                  href={item.href}
+                  to={item.href}
                   className={classNames(
-                    item.current
+                    item.name.toLowerCase() === pathName
                       ? 'bg-gray-900 text-white'
                       : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                     'block rounded-md px-3 py-2 text-base font-medium'
@@ -103,7 +111,7 @@ function Header() {
                   onClick={() => onClickNavigation(item.name)}
                 >
                   {item.name}
-                </a>
+                </Link>
               ))}
             </div>
           )}

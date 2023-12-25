@@ -64,8 +64,8 @@ const navigation = [
 
 function Footer() {
   return (
-    <footer className=" border-t-2 ">
-      <div className="mx-automax-w-7xl p-6 md:flex md:items-center md:justify-between lg:px-8">
+    <footer className="mt-auto">
+      <div className="p-6 md:flex md:items-center md:justify-between lg:px-8">
         <div className="flex justify-center space-x-6 md:order-2">
           {navigation.map((item) => (
             <a
@@ -73,7 +73,6 @@ function Footer() {
               href={item.href}
               className="text-gray-400 hover:text-gray-500"
             >
-              <span className="sr-only">{item.name}</span>
               <item.icon className="h-6 w-6" aria-hidden="true" />
             </a>
           ))}

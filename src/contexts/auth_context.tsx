@@ -11,6 +11,8 @@ type AuthContextType = {
   setSuccessDescription: React.Dispatch<React.SetStateAction<string>>;
   errorDescription: string;
   setErrorDescription: React.Dispatch<React.SetStateAction<string>>;
+  fetchLoading: boolean;
+  setFetchLoading: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const AuthContext = createContext<AuthContextType>({
@@ -20,12 +22,15 @@ const AuthContext = createContext<AuthContextType>({
   setSuccessDescription: () => {},
   errorDescription: '',
   setErrorDescription: () => {},
+  fetchLoading: false,
+  setFetchLoading: () => {},
 });
 
 function AuthProvider({ children }: AuthContextProviderProps) {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(true);
   const [successDescription, setSuccessDescription] = useState<string>(''); // Success message to display in the alert
   const [errorDescription, setErrorDescription] = useState<string>(''); // Error message to display in the alert
+  const [fetchLoading, setFetchLoading] = useState<boolean>(false); // Indicates if the fetch is loading
 
   return (
     <AuthContext.Provider
@@ -36,6 +41,8 @@ function AuthProvider({ children }: AuthContextProviderProps) {
         setSuccessDescription,
         errorDescription,
         setErrorDescription,
+        fetchLoading,
+        setFetchLoading,
       }}
     >
       {children}

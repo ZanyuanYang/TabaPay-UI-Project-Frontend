@@ -9,14 +9,10 @@ import { deletePostByIdUsingPost } from '@/services/PostController';
 import AlertConfirmDialog from '@/components/AlertConfirmDialog';
 import { AuthContext } from '@/contexts/auth_context';
 
-interface CategoryListsProps {
-  activeTab: string;
-}
-
-function CategoryLists(props: CategoryListsProps) {
-  const { posts, likePost, getPostsByCategory } = useContext(MenuContext);
+function CategoryLists() {
+  const { posts, likePost, getPostsByCategory, activeTab } =
+    useContext(MenuContext);
   const { setSuccessDescription } = useContext(AuthContext);
-  const { activeTab } = props;
   const [alertConfirmDialogOpen, setAlertConfirmDialogOpen] =
     useState<boolean>(false);
   const [alertConfirmDialogTitle, setAlertConfirmDialogTitle] =

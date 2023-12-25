@@ -15,7 +15,6 @@ declare namespace API {
   type PostListItem = {
     name: string;
     description: string;
-    referralLink: string;
     websiteLink: string;
     imageUrl: string;
   };
@@ -32,7 +31,6 @@ declare namespace API {
     _id: string;
     name: string;
     description: string;
-    referralLink: string;
     websiteLink: string;
     imageUrl: string;
   };

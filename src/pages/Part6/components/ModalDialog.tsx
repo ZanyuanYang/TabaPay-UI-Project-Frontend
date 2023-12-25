@@ -19,7 +19,7 @@ function ModalDialog({ open, onClose, content }: ModalDialogProps) {
     return () => {
       document.removeEventListener('keydown', handleEscape);
     };
-  }, [onClose]); // Dependency on 'onClose' function
+  }, [onClose]);
 
   // Function to handle the overlay click
   const handleOverlayClick = (
