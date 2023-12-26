@@ -14,7 +14,10 @@ visited http://localhost:5173/
 #### I deploy the project to `Netlify`
 ⚠️ It may take a few seconds to load the page when you visit the site for the first time(just keep refreshing the page)
 
+⚠️ If part6 didn't show the Menu, please open this url wait until the data show up: https://tabapay-ui-project-backend.onrender.com/api/post/Introduction
+
 visited https://main--stellular-conkies-887058.netlify.app/
+
 
 ## Package
 
@@ -28,7 +31,7 @@ visited https://main--stellular-conkies-887058.netlify.app/
 - [Tailwind CSS](https://tailwindcss.com/)
 - [Shadcn/ui](https://ui.shadcn.com/)
 
-## [Part 1](http://localhost:5173/part1)
+## [Part 1](https://main--stellular-conkies-887058.netlify.app/part1)
 
 ### Objective
 
@@ -41,7 +44,7 @@ Create A Dynamic Tree Menu
 - [x] Recursively render the tree node
 
 
-## [Part 2](http://localhost:5173/part2)
+## [Part 2](https://main--stellular-conkies-887058.netlify.app/part2)
 
 ### Objective: 
 
@@ -56,7 +59,7 @@ If Click on a Tree Item from Part 1, show which one was clicked? Using a Modal D
 - [x] Hide the Modal Dialog Box component when the close button/background is clicked
 
 
-## [Part 3](http://localhost:5173/part3)
+## [Part 3](https://main--stellular-conkies-887058.netlify.app/part3)
 
 ### Objective
 
@@ -70,7 +73,7 @@ If Click on a Tree Item from Part 1, show which one was clicked? Using a Modal D
 - [x] Show the Body component when the item is clicked
 
 
-## [Part 4](http://localhost:5173/part4)
+## [Part 4](https://main--stellular-conkies-887058.netlify.app/part4)
 
 ### Objective
 
@@ -83,7 +86,7 @@ If Click on a Tree Item from Part 1, show which one was clicked? Using a Modal D
 - [x] Create a component Footer
 
 
-## [Part 5](http://localhost:5173/part5)
+## [Part 5](https://main--stellular-conkies-887058.netlify.app/part5)
 
 ### Objective
 
@@ -114,7 +117,7 @@ Category n
 
 
 
-## [Part 6 - For Full Stack Engineers](http://localhost:5173/part6)
+## [Part 6 - For Full Stack Engineers](https://main--stellular-conkies-887058.netlify.app/part6)
 
 ### Objective
 
