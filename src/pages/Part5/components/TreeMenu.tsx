@@ -4,22 +4,14 @@ import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
 
 interface TreeNodeProps {
   node: any;
-  onClickNode: (node: string) => void;
   onOpenNode: string;
   setOnOpenNode: (node: string) => void;
   activeTab: string;
   onClickTab: (tab: string) => void;
 }
 function TreeNode(props: TreeNodeProps) {
-  const {
-    node,
-    onClickNode,
-    onOpenNode,
-    setOnOpenNode,
-    activeTab,
-    onClickTab,
-  } = props;
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const { node, onOpenNode, setOnOpenNode, activeTab, onClickTab } = props;
+  const [isOpen, setIsOpen] = useState<boolean>(true);
   return (
     <li>
       {node.children ? (
@@ -40,21 +32,16 @@ function TreeNode(props: TreeNodeProps) {
           )}
         </div>
       ) : (
-        // <div className="flex gap-2" onClick={() => onClickNode(node.title)}>
-        //   <input id={node.title} type="radio" value={node.title} name="node" />
-        //   <label htmlFor={node.title}>{node.title}</label>
-        // </div>
         <li
           className="list-disc ml-6"
           onClick={() => {
-            onClickNode(node.title);
             setOnOpenNode(node.title);
             onClickTab(node.title);
           }}
         >
           <div
             className={`cursor-pointer hover:bg-gray-200 rounded-md p-2 -ml-6 pl-6 ${
-              onOpenNode === node.title ? 'bg-gray-200' : ''
+              activeTab === node.title ? 'bg-gray-200' : ''
             }`}
           >
             {node.title}
@@ -64,7 +51,6 @@ function TreeNode(props: TreeNodeProps) {
       {isOpen && node.children && (
         <TreeMenu
           nodes={node.children}
-          onClickNode={onClickNode}
           onOpenNode={onOpenNode}
           setOnOpenNode={setOnOpenNode}
           activeTab={activeTab}
@@ -77,21 +63,13 @@ function TreeNode(props: TreeNodeProps) {
 
 interface TreeMenuProps {
   nodes: any;
-  onClickNode: (node: string) => void;
   onOpenNode: string;
   setOnOpenNode: (node: string) => void;
   activeTab: string;
   onClickTab: (tab: string) => void;
 }
 function TreeMenu(props: TreeMenuProps) {
-  const {
-    nodes,
-    onClickNode,
-    onOpenNode,
-    setOnOpenNode,
-    activeTab,
-    onClickTab,
-  } = props;
+  const { nodes, onOpenNode, setOnOpenNode, activeTab, onClickTab } = props;
   return (
     <ul className="mt-1">
       {nodes.map((node: any, index: number) => {
@@ -99,7 +77,6 @@ function TreeMenu(props: TreeMenuProps) {
           <TreeNode
             key={index}
             node={node}
-            onClickNode={onClickNode}
             onOpenNode={onOpenNode}
             setOnOpenNode={setOnOpenNode}
             activeTab={activeTab}

@@ -56,7 +56,7 @@ function CategoryCreateDialog(props: CategoryCreateDialogProps) {
             </DialogTrigger>
           </TooltipTrigger>
           <TooltipContent>
-            <p>Add to library</p>
+            <p>Create Category</p>
           </TooltipContent>
         </Tooltip>
       </TooltipProvider>
