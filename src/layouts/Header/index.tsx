@@ -24,7 +24,6 @@ function Header() {
   const path = window.location.pathname;
   const pathSplit = path.split('/');
   const pathName = pathSplit[pathSplit.length - 1];
-  console.log(pathName);
   const [open, setOpen] = useState<boolean>(false);
   const [navigation, setNavigation] =
     useState<NavigationProps[]>(navigationInit);

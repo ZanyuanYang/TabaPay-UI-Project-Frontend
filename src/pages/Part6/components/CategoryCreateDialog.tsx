@@ -17,7 +17,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
-import { ChangeEvent, useContext, useState } from 'react';
+import { ChangeEvent, useContext, useEffect, useState } from 'react';
 import { MenuContext } from '@/contexts/menu_context';
 import { createMenuUsingPost } from '@/services/MenuController';
 import { createCategoryUsingPost } from '@/services/CategoryController';
@@ -39,11 +39,11 @@ function CategoryCreateDialog(props: CategoryCreateDialogProps) {
 
   const onSubmit = async () => {
     const res = await createCategoryUsingPost(body, menuName);
-    console.log(res);
     if (res.status === 200) {
       await getAllMenus();
     }
   };
+
   return (
     <Dialog>
       <TooltipProvider>

@@ -11,7 +11,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import Divider from '@mui/material/Divider';
-import { ChangeEvent, useContext, useState } from 'react';
+import { ChangeEvent, useContext, useEffect, useState } from 'react';
 import { createPostUsingPost } from '@/services/PostController';
 import { AuthContext } from '@/contexts/auth_context';
 import { MenuContext } from '@/contexts/menu_context';
@@ -77,6 +77,13 @@ function PostCreateDialog(props: PostCreateDialogProps) {
       setSuccessDescription('Create Post Successfully');
     }
   };
+
+  useEffect(() => {
+    setBody((prevBody) => ({
+      ...prevBody,
+      category: category,
+    }));
+  }, [category]);
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>

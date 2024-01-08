@@ -19,6 +19,7 @@ function CategoryLists() {
     useState<string>('');
   const [alertConfirmDialogDescription, setAlertConfirmDialogDescription] =
     useState<string>('');
+  const [deletedId, setDeletedId] = useState<string>('');
 
   const onClickDeletePostById = async (category: string, postId: string) => {
     const res = await deletePostByIdUsingPost(category, postId);
@@ -29,7 +30,8 @@ function CategoryLists() {
     }
   };
 
-  const onClickDeletePostBtn = () => {
+  const onClickDeletePostBtn = (postId: string) => {
+    setDeletedId(postId);
     setAlertConfirmDialogTitle('Delete Post');
     setAlertConfirmDialogDescription('Delete Post Successfully');
     setAlertConfirmDialogOpen(true);
@@ -76,7 +78,7 @@ function CategoryLists() {
             <IconButton
               aria-label="delete"
               size="small"
-              onClick={() => onClickDeletePostBtn()}
+              onClick={() => onClickDeletePostBtn(post._id)}
             >
               <DeleteIcon />
             </IconButton>
@@ -89,15 +91,17 @@ function CategoryLists() {
             </IconButton>
             <p className="text-sm">{post.like}</p>
           </div>
-          <AlertConfirmDialog
-            dialogOpen={alertConfirmDialogOpen}
-            setDialogOpen={setAlertConfirmDialogOpen}
-            title={alertConfirmDialogTitle}
-            description={alertConfirmDialogDescription}
-            onClickConfirm={() => onClickDeletePostById(activeTab, post._id)}
-          />
         </article>
       ))}
+      <AlertConfirmDialog
+        dialogOpen={alertConfirmDialogOpen}
+        setDialogOpen={setAlertConfirmDialogOpen}
+        title={alertConfirmDialogTitle}
+        description={alertConfirmDialogDescription}
+        activeTab={activeTab}
+        postId={deletedId}
+        onClickConfirm={onClickDeletePostById}
+      />
     </div>
   );
 }

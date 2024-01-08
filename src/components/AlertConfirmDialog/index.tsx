@@ -14,12 +14,21 @@ type AlertConfirmDialogProps = {
   setDialogOpen: (dialogOpen: boolean) => void;
   title: string;
   description: string;
-  onClickConfirm: any;
+  onClickConfirm: (activeTab: string, postId: string) => void;
+  activeTab: string;
+  postId: string;
 };
 
 function AlertConfirmDialog(props: AlertConfirmDialogProps) {
-  const { dialogOpen, setDialogOpen, title, description, onClickConfirm } =
-    props;
+  const {
+    dialogOpen,
+    setDialogOpen,
+    title,
+    description,
+    onClickConfirm,
+    activeTab,
+    postId,
+  } = props;
   return (
     <AlertDialog open={dialogOpen} onOpenChange={setDialogOpen}>
       <AlertDialogContent>
@@ -29,7 +38,7 @@ function AlertConfirmDialog(props: AlertConfirmDialogProps) {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction onClick={() => onClickConfirm()}>
+          <AlertDialogAction onClick={() => onClickConfirm(activeTab, postId)}>
             Confirm
           </AlertDialogAction>
         </AlertDialogFooter>
